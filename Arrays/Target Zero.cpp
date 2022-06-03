@@ -20,10 +20,10 @@
 // Simply with the given number (n). We can say on thing if we want something to be zero in accrodance with the numbers, we need (x) as well as (-x).
 // Ex - 1
 // n = 6
-// As we want all the numbers to be unique we can simply say that if we had a pair of (x) & (-x) every input (n) we can have an array which would sum up to 0. For what we require is (n/2) pairs in (x) and (-x) numbers, in case of an even number. And (6/2) = 3. Hence, [-3, -2, -1, 1, 2, 3] would be the answer. As the solution has to be sorted. What we can do is either first push these pairs randomly and then sort the array. Or what we can do is simply first push (-ve [-n/2, -1]) elements first and then push the (+ve [1, -n/2]) elements.
+// As we want all the numbers to be unique we can simply say that if we had a pair of (x) & (-x) every input (n) we can have an array which would sum up to 0. For that what we require is (n/2) pairs in (x) and (-x) numbers, in case of an even number. And (6/2) = 3. Hence, [-3, -2, -1, 1, 2, 3] would be the answer. As the solution has to be sorted. What we can do is either first push these pairs randomly and then sort the array. Or what we can do is simply first push (-ve [-n/2, -1]) elements first and then push the (+ve [1, n/2]) elements.
 // Ex - 2
 // n = 5
-// As we want all the numbers to be unique we can simply say that if we had a pair of (x) & (-x) every input (n) we can have an array which would sum up to 0. For what we require is (n/2) pairs in (x) and (-x) numbers, but in case of an odd number for ex (5/2) = 2. And having 2 pairs would still leave us with one place to fill. Which can be filled with zero itself. Now, in this case we can simply first push all the (+ve) elements from [1, n-1/2] and then push (0) and then from [-(n-1)/2, -1].
+// As we want all the numbers to be unique we can simply say that if we had a pair of (x) & (-x) every input (n) we can have an array which would sum up to 0. For that what we require is (n/2) pairs in (x) and (-x) numbers, but in case of an odd number for ex (5/2) = 2. And having 2 pairs would still leave us with one place to fill. Which can be filled with zero itself. Now, in this case we can simply first push all the (-ve) elements [-(n-1)/2, -1] followed by (0) then (+ve) elements from [1, n-1/2]
 
 #include <iostream>
 #include <climits>

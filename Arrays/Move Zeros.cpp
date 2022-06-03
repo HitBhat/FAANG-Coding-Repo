@@ -26,7 +26,7 @@
 
 // 2) Create an seperate array. Now take two pointers (i) and (j) on both of the arrays. Every time we encounter an non-zeros push the values in the new array and increase both the (i) & (j) pointer. If we encounter an 0, simple increase the count and move (i) but not (j). At last when the first array has been completely iterated simply push the 0 equal to the number of counts stored. Time Complexity - O(N) & Space Complexity - O(N)
 
-// 3) If looked carefully, it seems like an sorting kind of approach where we want to have all the zeros at last. And for that swapping is a technique that can be used. Herw we use an similar approach as to previous one where we required two pointers (i) & (j) . Pointer (i) would iterate over the array and (j) would stop at times it finds an 0, and we swap both (i) & (j) values. Once swapped both the values of (i) & (j) are updated. In case we encounter an 0 over (i) we don't do anything. Time Complexity - O(N) & Space Complexity - O(1)
+// 3) If looked carefully, it seems like an sorting kind of approach where we want to have all the zeros at last. And for that swapping is a technique that can be used. Here we use an similar approach as to previous one where we required two pointers (i) & (j) . Pointer (i) would iterate over the array and (j) would stop at times it finds an 0, and we swap both (i) & (j) values. Once swapped both the values of (i) & (j) are updated. In case we encounter an 0 over (i) we don't do anything. Time Complexity - O(N) & Space Complexity - O(1)
 
 #include <iostream>
 #include <vector>
