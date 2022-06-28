@@ -16,10 +16,9 @@
 // 4
 // 3 2 4 1
 // Sample Output
-// 3 4 2 3 1 2 
+// 3 4 2 3 1 2
 
-
-// Approach:- We have an flip. What flip means is simply take input (k) integer. And reverse the first (k) elements of the array. And atlast only using these flips. We should be able to 
+// Approach:- We have an flip. What flip means is simply take input (k) integer. And reverse the first (k) elements of the array. And atlast only using these flips. We should be able to
 // sort the array. Also, we have an condition that we should not use more that 10*N filps. (N) being the length of the input array. When we talk about sorting algorithm like Bubble Sort. We
 // can either take the smallest element to the front and largest element to the last.
 // Ex - 3, 2, 1, 4, 5
@@ -35,3 +34,90 @@
 // So, with this approach we were able to put each element in its correct position in 2 filps. And there are total (N) elements. Hence it would only require 2*N filps to sort the array.
 // Time Complexity - We iterate and find the largest element it would take O(N) time for each element. And then I would take more O(N/2) time to flip the array using two pointer approach and swapping them by moving both left and right pointers.
 // So, it takes us O(N) time to put it in correct place, hence for entire function it would take O(N*N).
+
+#include <bits/stdc++.h>
+using namespace std;
+
+void flip(vector<int> &a, int index)
+{
+  int i = 0;
+  while (i < index) // When flipping the array we don't need to use the (i!=index) check as that would give you segmentation fault. This is an better condition to check.
+  {
+    int temp = a[index];
+    a[index] = a[i];
+    a[i] = temp;
+    i++;
+    index--;
+  }
+}
+
+bool alreadySorted(vector<int> arr)
+{
+  for (int i = 0; i < arr.size() - 1; i++)
+  {
+    if (arr[i] > arr[i + 1])
+    {
+      return false; // Basically, it checks if any greater element exists before smaller elements which should not be a case in sorted array.
+    }
+  }
+  return true;
+}
+
+vector<int> pancakeSorting(vector<int> &arr)
+{
+  if (alreadySorted(arr))
+  {
+    vector<int> empty;
+    return empty;
+  }
+  vector<int> flippedSequence; // We had to return the array of the flips that we did to get the sorted array, rather than returning the sorted array.
+  int elementsPlaced = 0;
+  int largestElement = -1;
+  int largestElementIdx = -1;
+  int iterations = 0;
+  while (iterations < arr.size())
+  {
+    for (int idx = 0; idx < arr.size() - elementsPlaced; idx++)
+    {
+      if (arr[idx] > largestElement)
+      {
+        largestElement = arr[idx];
+        largestElementIdx = idx;
+      }
+    }
+    // Now, flip the elements till largestElementIdx
+    flip(arr, largestElementIdx);
+    flippedSequence.push_back(largestElementIdx + 1); // Creating the array of flips that we used
+    // Now, that the largestElement is at the first/0 index we need to flip the entire array
+    flip(arr, arr.size() - 1 - elementsPlaced);
+    flippedSequence.push_back(arr.size() - 1 - elementsPlaced + 1); // Creating the array of flips that we used
+    elementsPlaced++;
+    largestElement = -1;
+    largestElementIdx = -1;
+    iterations++;
+  }
+  return flippedSequence;
+}
+
+int main()
+{
+  int testCases;
+  cin >> testCases;
+  while (testCases--)
+  {
+    int n;
+    cin >> n;
+    vector<int> arr(n), tmp(n);
+    for (int i = 0; i < n; ++i)
+    {
+      cin >> arr[i];
+      tmp[i] = arr[i];
+    }
+    vector<int> v = pancakeSorting(arr);
+    for (int i = 0; i < v.size(); ++i)
+    {
+      cout << v[i] << " ";
+    }
+    cout << "\n";
+  }
+}
