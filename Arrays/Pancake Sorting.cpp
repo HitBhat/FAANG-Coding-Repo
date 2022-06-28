@@ -20,4 +20,18 @@
 
 
 // Approach:- We have an flip. What flip means is simply take input (k) integer. And reverse the first (k) elements of the array. And atlast only using these flips. We should be able to 
-// sort the array. Also, we have an condition that we should not use more that 10*N filps. (N) being the length of the input array.
+// sort the array. Also, we have an condition that we should not use more that 10*N filps. (N) being the length of the input array. When we talk about sorting algorithm like Bubble Sort. We
+// can either take the smallest element to the front and largest element to the last.
+// Ex - 3, 2, 1, 4, 5
+// Let's say if we flip(3) => 1, 2, 3, 4, 5
+// But what if - 3, 2, 1, 4, 5, 2, 1
+// With flip(3) => 1, 2, 3, 4, 5, 2, 1 -> Now if in this case I try to flip it again, then the element (1) at 0 index which is currently at its correct position it would be switched.
+// We will take largest character at its correct position.
+// Ex - 2, 3, 1, 7, 6, 4, 5
+// We will start by bringing the (7) at its correct position. I would try to find out the largest elements amongst the given array.
+// Let's say we point (i) at the largest element, and (j) iterator points to the index for each largest elements correct position. We would first flip(i) elements. => 7, 1, 3, 2, 4, 6, 5
+// After this simply flip(j) elements. => 5, 6, 4, 2, 3, 1, 7
+// Then again I will try to find out the next largest element. Simultaneously, we will keep on decreasing the (j)
+// So, with this approach we were able to put each element in its correct position in 2 filps. And there are total (N) elements. Hence it would only require 2*N filps to sort the array.
+// Time Complexity - We iterate and find the largest element it would take O(N) time for each element. And then I would take more O(N/2) time to flip the array using two pointer approach and swapping them by moving both left and right pointers.
+// So, it takes us O(N) time to put it in correct place, hence for entire function it would take O(N*N).
